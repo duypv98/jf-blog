@@ -1,0 +1,21 @@
+.mainFooter {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  .footerContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .footerItem {
+      cursor: pointer;
+      &:hover {
+        color: #0085a1;
+      }
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

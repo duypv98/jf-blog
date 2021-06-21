@@ -4,14 +4,11 @@ import styles from './Footer.module.scss';
 
 const Footer = () => {
   /**
-   * 
-   * @param {string} link 
-   * @returns 
+   *
+   * @param {string} link
+   * @returns
    */
-  const redirectContact = (link) => {
-    return window?.open(link, '_blank');
-  }
-
+  const redirectContact = (link) => window?.open(link, '_blank');
 
   return (
     <footer className={`${styles.mainFooter} border-top`}>
@@ -21,22 +18,22 @@ const Footer = () => {
             <div className={styles.footerContent}>
               <div className={styles.footerItem} onClick={() => redirectContact('https://www.facebook.com/duy.real.1998')}>
                 <span className="fa-stack fa-lg">
-                  <i className="fas fa-circle fa-stack-2x"></i>
-                  <i className="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                  <i className="fas fa-circle fa-stack-2x" />
+                  <i className="fab fa-facebook-f fa-stack-1x fa-inverse" />
                 </span>
               </div>
 
               <div className={styles.footerItem} onClick={() => redirectContact('https://github.com/duypv98')}>
                 <span className="fa-stack fa-lg">
-                  <i className="fas fa-circle fa-stack-2x"></i>
-                  <i className="fab fa-github fa-stack-1x fa-inverse"></i>
+                  <i className="fas fa-circle fa-stack-2x" />
+                  <i className="fab fa-github fa-stack-1x fa-inverse" />
                 </span>
               </div>
 
               <div className={styles.footerItem} onClick={() => redirectContact('https://www.linkedin.com/in/ijduypv/')}>
                 <span className="fa-stack fa-lg">
-                  <i className="fas fa-circle fa-stack-2x"></i>
-                  <i className="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                  <i className="fas fa-circle fa-stack-2x" />
+                  <i className="fab fa-linkedin-in fa-stack-1x fa-inverse" />
                 </span>
               </div>
 

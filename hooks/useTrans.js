@@ -1,6 +1,6 @@
+import { useRouter } from 'next/router';
 import vi from '../i18n/vi';
 import en from '../i18n/en';
-import { useRouter } from 'next/router';
 
 const useTrans = () => {
   const { locale } = useRouter();

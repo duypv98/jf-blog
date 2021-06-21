@@ -1,6 +1,6 @@
 export default {
   nav: {
-    home: 'Trang chủ',
+    home: 'Home',
     series: 'Series'
   },
 

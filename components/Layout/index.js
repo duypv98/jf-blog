@@ -1,9 +1,8 @@
-import { PropsWithChildren } from 'react';
 import Head from 'next/head';
 
 /**
- * 
- * @param {PropsWithChildren<{}>} props 
+ *
+ * @param {import('react').PropsWithChildren<{}>} props
  */
 const Layout = (props) => (
   <>

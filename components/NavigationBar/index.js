@@ -1,8 +1,8 @@
-import { memo } from 'react';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
-import styles from './NavigationBar.module.scss';
 import Link from 'next/link';
+import { memo } from 'react';
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import useTrans from '../../hooks/useTrans';
+import styles from './NavigationBar.module.scss';
 
 const NavigationBar = () => {
   const trans = useTrans();
@@ -17,7 +17,7 @@ const NavigationBar = () => {
         </Link>
 
         {/* Collapse Button */}
-        <Navbar.Toggle >
+        <Navbar.Toggle>
           <i className="fas fa-bars" />
         </Navbar.Toggle>
 

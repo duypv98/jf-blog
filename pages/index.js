@@ -12,11 +12,9 @@ const Index = () => {
       <Header
         title={trans.index.title}
         subTitle={trans.index.subTitle}
-        isSiteHeader={true}
+        isSiteHeader
       />
-      <div id="index">
-        
-      </div>
+      <div id="index" />
       <Footer />
     </Layout>
   );

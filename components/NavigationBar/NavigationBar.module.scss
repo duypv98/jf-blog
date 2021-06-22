@@ -15,19 +15,36 @@
     background-color: transparent;
     border-bottom: 1px solid transparent;
   }
-  .navLogo {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    & > img {
-      max-width: 100%;
-      height: auto;
+
+  .logoMenu {
+    display: flex;
+    align-items: center;
+    .navLogo {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      & > img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    .langCollapse {
+      i, &::after {
+        font-size: x-large;
+      }
+      @include responsive(lg) {
+        color: #fff;
+      }
     }
   }
 
   .navItem {
     font-weight: 700;
     font-size: larger;
+    & > div {
+      border: none;
+    }
   }
 
   @include responsive(lg) {

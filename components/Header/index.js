@@ -3,15 +3,15 @@ import styles from './Header.module.scss';
 import { Container, Row, Col } from 'react-bootstrap';
 
 /**
- * 
+ *
  * @param {{
  *  backgroundSrc?: string;
  *  isSiteHeader?: boolean;
  *  title?: string;
  *  subTitle?: string;
  *  meta?: string;
- * }} props 
- * @returns 
+ * }} props
+ * @returns
  */
 const Header = (props) => {
   const {

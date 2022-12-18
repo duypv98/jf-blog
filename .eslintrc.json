@@ -28,6 +28,8 @@
     "no-console": "off",
     "no-multi-assign": "off",
     "no-nested-ternary": "off",
+    "no-shadow": "off",
+    "no-underscore-dangle": "off",
     "no-unused-vars": "warn",
     "prefer-const": "warn",
     "prefer-destructuring": "off",

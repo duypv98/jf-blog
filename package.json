@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.0.1",
     "classnames": "^2.3.2",
     "crypto": "^1.0.1",
     "css-loader": "1.0.0",
     "file-loader": "^6.2.0",
+    "isomorphic-fetch": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "mini-css-extract-plugin": "2.4.5",
     "mongoose": "^6.8.0",
@@ -22,9 +24,11 @@
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.4",
     "node-sass": "npm:sass",
+    "query-string": "^8.0.3",
     "react": "17.0.2",
     "react-bootstrap": "2.7.0",
     "react-dom": "17.0.2",
+    "react-redux": "^8.0.5",
     "sass-loader": "6.0.6",
     "sharp": "^0.31.2",
     "style-loader": "3.3.1"

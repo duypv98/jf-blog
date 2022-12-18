@@ -19,7 +19,7 @@ const PostPage = (props) => {
  * @param {import('next').GetServerSidePropsContext} context
  */
 export const getServerSideProps = (context) => {
-  const [root, category, post] = Array.from(context.query.posts);
+  const [root = null, category = null, post = null] = Array.from(context.query.posts);
 
   return {
     props: {

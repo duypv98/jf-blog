@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { memo } from 'react';
 import { Container, Dropdown, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import useTrans from '../../hooks/useTrans';
-import styles from './NavigationBar.module.scss';
+import './NavigationBar.scss';
 
 const NavigationBar = () => {
   const trans = useTrans();
@@ -19,17 +19,17 @@ const NavigationBar = () => {
   }
 
   return (
-    <Navbar expand="lg" className={styles.mainNav}>
+    <Navbar expand="lg" className="mainNav">
       <Container className="px-4 px-lg-5 position-relative">
         {/* Logo */}
         <Link href="/" as="/">
-          <div className={styles.logoMenu}>
-            <div className={styles.navLogo}>
+          <div className="logoMenu">
+            <div className="navLogo">
               <img src="/images/logo.png" alt="logo" />
             </div>
 
             <Dropdown>
-              <Dropdown.Toggle variant="none" id="lang-collapse" className={styles.langCollapse}>
+              <Dropdown.Toggle variant="none" id="lang-collapse" className="langCollapse">
                 <i className="fas fa-globe" />
               </Dropdown.Toggle>
 
@@ -48,8 +48,8 @@ const NavigationBar = () => {
 
         <Navbar.Collapse>
           <Nav className="ms-auto py-4 py-lg-0">
-            <Nav.Link href="/" className={styles.navItem}>{trans.nav.home}</Nav.Link>
-            <NavDropdown title={trans.nav.series} className={styles.navItem} id="series-nav-dropdown" renderMenuOnMount={false}>
+            <Nav.Link href="/" className="navItem">{trans.nav.home}</Nav.Link>
+            <NavDropdown title={trans.nav.series} className="navItem" id="series-nav-dropdown" renderMenuOnMount={false}>
               <NavDropdown.Item href="/fe">Front-End | React</NavDropdown.Item>
               <NavDropdown.Item href="/be">Back-End</NavDropdown.Item>
               <NavDropdown.Item href="/devops">DevOps</NavDropdown.Item>

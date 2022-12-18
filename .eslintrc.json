@@ -20,8 +20,12 @@
   ],
   "rules": {
     "comma-dangle": "off",
+    "eol-last": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
+    "max-len": "off",
+    "no-nested-ternary": "off",
+    "no-unused-vars": "warn",
     "react/destructuring-assignment": "off",
     "react/jsx-filename-extension": [
       1,
@@ -36,6 +40,7 @@
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "object-curly-newline": "off",
+    "quotes": "off",
     "semi": "off"
   }
 }

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import styles from './Footer.module.scss';
+import './Footer.scss';
 
 const Footer = () => {
   /**
@@ -11,32 +11,31 @@ const Footer = () => {
   const redirectContact = (link) => window?.open(link, '_blank');
 
   return (
-    <footer className={`${styles.mainFooter} border-top`}>
+    <footer className="mainFooter border-top">
       <Container className="px-4 px-lg-5">
         <Row className="gx-4 gx-lg-5 justify-content-center">
           <Col className="col-md-10 col-lg-8 col-xl-7">
-            <div className={styles.footerContent}>
-              <div className={styles.footerItem} onClick={() => redirectContact('https://www.facebook.com/duy.real.1998')}>
+            <div className="footerContent">
+              <div className="footerItem" onClick={() => redirectContact('https://www.facebook.com/duy.real.1998')}>
                 <span className="fa-stack fa-lg">
                   <i className="fas fa-circle fa-stack-2x" />
                   <i className="fab fa-facebook-f fa-stack-1x fa-inverse" />
                 </span>
               </div>
 
-              <div className={styles.footerItem} onClick={() => redirectContact('https://github.com/duypv98')}>
+              <div className="footerItem" onClick={() => redirectContact('https://github.com/duypv98')}>
                 <span className="fa-stack fa-lg">
                   <i className="fas fa-circle fa-stack-2x" />
                   <i className="fab fa-github fa-stack-1x fa-inverse" />
                 </span>
               </div>
 
-              <div className={styles.footerItem} onClick={() => redirectContact('https://www.linkedin.com/in/ijduypv/')}>
+              <div className="footerItem" onClick={() => redirectContact('https://www.linkedin.com/in/ijduypv/')}>
                 <span className="fa-stack fa-lg">
                   <i className="fas fa-circle fa-stack-2x" />
                   <i className="fab fa-linkedin-in fa-stack-1x fa-inverse" />
                 </span>
               </div>
-
             </div>
           </Col>
         </Row>

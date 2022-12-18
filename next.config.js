@@ -38,6 +38,9 @@ const nextConfig = {
       { key: 'X-Content-Type-Options', value: 'nosniff' }
     ]
   }],
+  eslint: {
+    ignoreDuringBuilds: true
+  },
   poweredByHeader: false,
   distDir: ".next"
 }

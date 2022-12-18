@@ -7,7 +7,8 @@
     justify-content: center;
     align-items: center;
     .footerItem {
-      cursor: pointer;
+      text-decoration: none;
+      color: initial;      
       &:hover {
         color: #0085a1;
       }

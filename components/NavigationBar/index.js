@@ -48,11 +48,11 @@ const NavigationBar = () => {
 
         <Navbar.Collapse>
           <Nav className="ms-auto py-4 py-lg-0">
-            <Nav.Link href="/" className="navItem">{trans.nav.home}</Nav.Link>
+            <Link passHref href="/" locale={router.locale}><Nav.Link className="navItem">{trans.nav.home}</Nav.Link></Link>
             <NavDropdown title={trans.nav.series} className="navItem" id="series-nav-dropdown" renderMenuOnMount={false}>
-              <NavDropdown.Item href="/fe">Front-End | React</NavDropdown.Item>
-              <NavDropdown.Item href="/be">Back-End</NavDropdown.Item>
-              <NavDropdown.Item href="/devops">DevOps</NavDropdown.Item>
+              <Link passHref href="/fe" locale={router.locale}><NavDropdown.Item>Front-End | React</NavDropdown.Item></Link>
+              <Link passHref href="/be" locale={router.locale}><NavDropdown.Item>Back-End</NavDropdown.Item></Link>
+              <Link passHref href="/devops" locale={router.locale}><NavDropdown.Item>DevOps</NavDropdown.Item></Link>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

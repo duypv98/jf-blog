@@ -19,6 +19,7 @@
     "react"
   ],
   "rules": {
+    "arrow-body-style": "off",
     "comma-dangle": "off",
     "eol-last": "off",
     "jsx-a11y/click-events-have-key-events": "off",

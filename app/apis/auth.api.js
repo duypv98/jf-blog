@@ -16,3 +16,8 @@ export const apiLogin = async (args) => {
   const { data, error } = await post({ endpoint: "/api/login", body: args, withCredentials: true });
   return error ? null : data;
 }
+
+export const apiRefreshToken = async (args) => {
+  const { data, error } = await post({ endpoint: "/api/refresh-token", body: {}, withCredentials: true });
+  return error ? null : data;
+}

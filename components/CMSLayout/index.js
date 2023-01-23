@@ -1,5 +1,7 @@
-import Head from "next/head"
+import Head from "next/head";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
+import AuthCMS from "./AuthCMS";
+import "./cms-layout.scss";
 
 /**
  *
@@ -13,10 +15,10 @@ const CMSLayout = (props) => {
       <title>CMS | Duy PV - Jerry F</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
-    <Navbar bg="dark" expand={false} className="mb-3">
+    <Navbar bg="dark" expand={false} className="mb-3 cms-navbar">
       <Container fluid>
-        <Navbar.Brand href="/cms">CMS</Navbar.Brand>
-        <Navbar.Toggle aria-controls="cms-nav" />
+        <Navbar.Brand href="/cms" className="cms-navbar-brand">CMS</Navbar.Brand>
+        <Navbar.Toggle aria-controls="cms-nav" className="cms-navbar-toggle" />
         <Navbar.Offcanvas
           id="cms-nav"
           placement="end"
@@ -33,7 +35,9 @@ const CMSLayout = (props) => {
         </Navbar.Offcanvas>
       </Container>
     </Navbar>
-    {props.children}
+    <AuthCMS>
+      {props.children}
+    </AuthCMS>
   </>
 }
 

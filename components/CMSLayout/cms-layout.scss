@@ -1,0 +1,11 @@
+.cms-navbar {
+  &-brand {
+    color: #fff !important;
+  }
+  &-toggle {
+    border-color: #fff !important;
+    span {
+      filter: invert(1);
+    }
+  }
+}

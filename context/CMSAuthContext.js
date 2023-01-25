@@ -5,8 +5,7 @@ import { createContext, useState } from "react";
  *  user: {
  *    name: string;
  *  };
- *  accessToken: string;
- *  refreshToken: string;
+ *  loading: boolean;
  * }} AuthState
  */
 
@@ -26,7 +25,7 @@ export const CMSAuthProvider = ({ children }) => {
   /**
    * @type {[AuthState, import("react").Dispatch<import("react").SetStateAction<AuthState>]}
    */
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState({ loading: true });
 
   return <CMSAuthContext.Provider value={{ auth, setAuth }}>
     {children}

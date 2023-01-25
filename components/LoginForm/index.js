@@ -18,10 +18,11 @@ const LoginForm = () => {
           return;
         }
         const { name, accessToken, refreshToken } = loginData;
+        localStorage.setItem("x-access-token", accessToken);
+        localStorage.setItem("x-refresh-token", refreshToken);
         toast(`Welcome! ${name}`, { type: "info" });
         setAuth({
-          user: { name },
-          accessToken
+          user: { name }
         });
       })
       .catch(() => {

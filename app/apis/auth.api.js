@@ -1,4 +1,4 @@
-import { post } from "../../utils/fetcher"
+import { get, post } from "../../utils/fetcher"
 
 /**
  *
@@ -13,11 +13,11 @@ import { post } from "../../utils/fetcher"
  * }>}
  */
 export const apiLogin = async (args) => {
-  const { data, error } = await post({ endpoint: "/api/login", body: args, withCredentials: true });
+  const { data, error } = await post({ endpoint: "/api/login", body: args });
   return error ? null : data;
 }
 
-export const apiRefreshToken = async (args) => {
-  const { data, error } = await post({ endpoint: "/api/refresh-token", body: {}, withCredentials: true });
+export const apiGetMe = async () => {
+  const { data, error } = await get({ endpoint: "/api/users/me", withAccessToken: true });
   return error ? null : data;
 }

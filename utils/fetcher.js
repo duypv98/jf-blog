@@ -1,5 +1,6 @@
 import fetch from "isomorphic-fetch";
 import qs from "query-string";
+import { UnauthorizedErrorData } from "./config";
 
 const apiHost = process.env.NEXT_PUBLIC_ENDPOINT || 'http://localhost:3000';
 
@@ -17,6 +18,18 @@ const defaultHeaders = {
 }
 
 /**
+ *
+ * @param {Response} response
+ * @param {"json" | "buffer" | "text"} responseType
+ * @returns
+ */
+const getResponseData = (response, responseType) => {
+  return responseType === "buffer"
+    ? response.arrayBuffer()
+    : (responseType === "text" ? response.text() : response.json())
+}
+
+/**
  * @typedef {{
  * endpoint: string;
  * method: "GET" | "POST" | "PATCH" | "DELETE";
@@ -25,6 +38,7 @@ const defaultHeaders = {
  * bodyType?: "json" | "multipart",
  * responseType?: "json" | "buffer" | "text";
  * withCredentials?: boolean;
+ * withAccessToken?: boolean;
  * }} RequestData
  */
 
@@ -45,6 +59,7 @@ const request = async (args) => {
     withCredentials = false,
     bodyType = "json",
     responseType = "json",
+    withAccessToken
   } = args;
   let _endpoint = endpoint;
   if (!endpoint.startsWith("http")) {
@@ -54,17 +69,43 @@ const request = async (args) => {
     ...defaultHeaders,
     ...customHeaders
   };
+  if (withAccessToken) {
+    const accessToken = localStorage.getItem("x-access-token");
+    if (accessToken) {
+      headers.authorization = `Bearer ${accessToken}`;
+    }
+  }
   if (method === "POST" && bodyType === "multipart") headers["Content-Type"] = "multipart/form-data";
+  const config = {
+    method,
+    headers,
+    body: body ? (bodyType === "multipart" ? body : JSON.stringify(body)) : null,
+    credentials: withCredentials ? "include" : "omit"
+  }
   try {
-    const response = await fetch(_endpoint, {
-      method,
-      headers,
-      body: body ? (bodyType === "multipart" ? body : JSON.stringify(body)) : null,
-      credentials: withCredentials ? "include" : "omit"
-    });
-    const data = responseType === "buffer"
-      ? await response.arrayBuffer()
-      : (responseType === "text" ? await response.text() : await response.json());
+    const response = await fetch(_endpoint, config);
+    const data = await getResponseData(response, responseType);
+    if (response.status === 401 && data?.data === UnauthorizedErrorData.TOKEN_EXPIRED) {
+      const refreshToken = localStorage.getItem("x-refresh-token");
+      if (refreshToken) {
+        // eslint-disable-next-line no-use-before-define
+        const refreshTokenData = await post({ endpoint: "/api/refresh-token", body: { refreshToken } });
+        if (refreshTokenData?.data) {
+          const { accessToken, refreshToken } = refreshTokenData?.data;
+          localStorage.setItem("x-access-token", accessToken);
+          localStorage.setItem("x-refresh-token", refreshToken);
+
+          config.headers.authorization = `Bearer ${accessToken}`;
+          const newResponse = await fetch(_endpoint, config);
+          const data = await getResponseData(newResponse, responseType);
+          return {
+            error: newResponse.status !== 200,
+            data,
+            headers: newResponse.headers
+          }
+        }
+      }
+    }
     return {
       error: response.status !== 200,
       data,

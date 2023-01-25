@@ -1,6 +1,6 @@
 import { UserModel } from "../models/user";
 import { compareHashPassword, hashPassword } from "../utils/encryption";
-import { signCredentials } from "../utils/jwtHelper";
+import { signCredentials, verifyCredentials } from "../utils/jwtHelper";
 import dbConnect from "../utils/mongodb";
 
 export default {
@@ -31,5 +31,27 @@ export default {
     const user = await UserModel.create({ account, password: hashPwd, name })
 
     return { userId: user._id };
+  },
+
+  getMe: async (args) => {
+    const userId = args.userId;
+    const user = await UserModel.findById(userId).select("-password");
+    return user;
+  },
+
+  /**
+   *
+   * @param {string} _refreshToken
+   */
+  refreshToken: async (_refreshToken) => {
+    const credentials = verifyCredentials({ token: _refreshToken, type: "refreshToken" });
+    if (!credentials) return null;
+    const newCredentials = { userId: credentials.userId };
+    const accessToken = signCredentials({ type: "accessToken", credentials: newCredentials });
+    const newRefreshToken = signCredentials({ type: "refreshToken", credentials: newCredentials });
+    return {
+      accessToken,
+      refreshToken: newRefreshToken
+    }
   }
 }

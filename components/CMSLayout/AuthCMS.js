@@ -9,11 +9,13 @@ import LoginForm from "../LoginForm";
 const AuthCMS = ({ children }) => {
   const { auth } = useCMSAuth();
 
-  return auth?.user
-    ? <>{children}</>
-    : <Container>
-      <LoginForm />
-    </Container>;
+  return auth?.loading
+    ? <></>
+    : auth?.user
+      ? <>{children}</>
+      : <Container>
+        <LoginForm />
+      </Container>;
 }
 
 export default AuthCMS;

@@ -36,6 +36,7 @@
     "no-underscore-dangle": "off",
     "no-unused-vars": "warn",
     "no-useless-return": "warn",
+    "object-property-newline": "off",
     "prefer-const": "warn",
     "prefer-destructuring": "off",
     "react/jsx-closing-tag-location": "off",

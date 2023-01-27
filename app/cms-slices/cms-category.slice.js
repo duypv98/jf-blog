@@ -1,7 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { apiCreateCategory, apiGetListCategories } from "../apis/category.api";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { apiCreateCategory, apiGetListCategories, apiUpdateCategoryById } from "../apis/category.api";
 
 const initialState = {
+  /** @type {Array<import("../apis/category.api").Category>} */
   categories: [],
   loading: true,
   currentCategory: null,
@@ -20,6 +21,16 @@ export const createCategory = createAsyncThunk("cms-categories/create",
    */
   async (args) => {
     const data = await apiCreateCategory(args);
+    return data;
+  });
+
+export const updateCategoryById = createAsyncThunk("cms-categoris/updateById",
+  /**
+   *
+   * @param {{ _id: string } & Partial<Omit<import("../apis/category.api").Category, "_id">>} args
+   */
+  async (args) => {
+    const data = await apiUpdateCategoryById(args);
     return data;
   });
 
@@ -51,6 +62,13 @@ const cmsCategorySlice = createSlice({
     builder.addCase(createCategory.fulfilled, (state, action) => {
       if (action.payload) {
         state.categories.push(action.payload);
+      }
+    });
+
+    builder.addCase(updateCategoryById.fulfilled, (state, action) => {
+      if (action.payload) {
+        const index = state.categories.findIndex((c) => c._id === action.payload._id);
+        if (index !== -1) state.categories.splice(index, 1, action.payload);
       }
     });
   }

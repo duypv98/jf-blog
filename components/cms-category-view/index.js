@@ -1,7 +1,9 @@
 import { useMemo } from "react";
-import { Button, Container, OverlayTrigger, Spinner, Table, Tooltip } from "react-bootstrap"
+import { Button, Container, OverlayTrigger, Spinner, Table, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentCategory, setOpenCreateOrUpdateCategoryModal } from "../../app/cms-slices/cms-category.slice";
+import DeleteFilled from "../icons/DeleteFilled";
+import EditFilled from "../icons/EditFilled";
 import CreateOrUpdateCategoryModal from "./CreateOrUpdateCategoryModal";
 import "./style.scss";
 
@@ -13,6 +15,11 @@ const CMSCategoryView = () => {
 
   const handleClickCreate = () => {
     dispatch(setCurrentCategory({}));
+    dispatch(setOpenCreateOrUpdateCategoryModal(true));
+  }
+
+  const handleEditCategory = (category) => {
+    dispatch(setCurrentCategory(category));
     dispatch(setOpenCreateOrUpdateCategoryModal(true));
   }
 
@@ -37,6 +44,7 @@ const CMSCategoryView = () => {
               <th>Title</th>
               <th>Slug</th>
               <th>Tag</th>
+              <th style={{ width: "100px" }}>Action</th>
             </tr>
           </thead>
 
@@ -46,6 +54,7 @@ const CMSCategoryView = () => {
               <td>Uncategorized</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
+              <td>&nbsp;</td>
             </tr>
             {categories.map((category, i) => {
               return <tr key={i}>
@@ -53,6 +62,19 @@ const CMSCategoryView = () => {
                 <td>{category.title}</td>
                 <td>{category.slug}</td>
                 <td>{category.tag}</td>
+                <td style={{ display: "flex", columnGap: "4px" }}>
+                  <OverlayTrigger overlay={<Tooltip>Edit</Tooltip>}>
+                    <Button size="sm" variant="light"
+                      onClick={() => handleEditCategory(category)}
+                    >
+                      <EditFilled />
+                    </Button>
+                  </OverlayTrigger>
+
+                  <OverlayTrigger overlay={<Tooltip>Delete</Tooltip>}>
+                    <Button size="sm" variant="light"><DeleteFilled /></Button>
+                  </OverlayTrigger>
+                </td>
               </tr>
             })}
           </tbody>

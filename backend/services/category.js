@@ -30,5 +30,11 @@ export default {
     });
     const newCategory = await CategoryModel.findByIdAndUpdate(_id, update, { new: true });
     return newCategory;
+  },
+
+  deleteById: async (id) => {
+    await dbConnect();
+    const deleted = await CategoryModel.findByIdAndDelete(id);
+    return deleted;
   }
 }

@@ -1,7 +1,9 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Button, Container, OverlayTrigger, Spinner, Table, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentCategory, setOpenCreateOrUpdateCategoryModal } from "../../app/cms-slices/cms-category.slice";
+import { toast } from "react-toastify";
+import { deleteCategoryById, setCurrentCategory, setOpenCreateOrUpdateCategoryModal } from "../../app/cms-slices/cms-category.slice";
+import ConfirmDialog from "../ConfirmDialog";
 import DeleteFilled from "../icons/DeleteFilled";
 import EditFilled from "../icons/EditFilled";
 import CreateOrUpdateCategoryModal from "./CreateOrUpdateCategoryModal";
@@ -12,6 +14,8 @@ const CMSCategoryView = () => {
   const dispatch = useDispatch();
 
   const openModal = useMemo(() => !!currentCategory && openCreateOrUpdateCategoryModal, [currentCategory, openCreateOrUpdateCategoryModal]);
+
+  const [triggeredDelete, setTriggeredDelete] = useState(null);
 
   const handleClickCreate = () => {
     dispatch(setCurrentCategory({}));
@@ -26,6 +30,12 @@ const CMSCategoryView = () => {
   const handleCloseModal = () => {
     dispatch(setCurrentCategory(null));
     dispatch(setOpenCreateOrUpdateCategoryModal(false));
+  }
+
+  const handleDeleteCategory = (id) => {
+    dispatch(deleteCategoryById(id));
+    toast("Deleted!", { type: "info" });
+    setTriggeredDelete(null);
   }
 
   return <Container id="cms-category-view">
@@ -72,7 +82,22 @@ const CMSCategoryView = () => {
                   </OverlayTrigger>
 
                   <OverlayTrigger overlay={<Tooltip>Delete</Tooltip>}>
-                    <Button size="sm" variant="light"><DeleteFilled /></Button>
+                    <ConfirmDialog
+                      show={triggeredDelete === category._id}
+                      popoverId={`confirm-delete-${category._id}`}
+                      title="Confirm Delete?"
+                      body={<p>Are you sure to delete category <b>{category.title}</b>?</p>}
+                      onClose={() => {
+                        setTriggeredDelete(null);
+                      }}
+                      onConfirm={() => {
+                        handleDeleteCategory(category._id);
+                      }}
+                    >
+                      <Button size="sm" variant="light" onClick={() => {
+                        setTriggeredDelete(category._id)
+                      }}><DeleteFilled /></Button>
+                    </ConfirmDialog>
                   </OverlayTrigger>
                 </td>
               </tr>

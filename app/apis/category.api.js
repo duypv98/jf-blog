@@ -1,4 +1,4 @@
-import { get, patch, post } from "../../utils/fetcher";
+import { del, get, patch, post } from "../../utils/fetcher";
 
 export const apiGetListCategories = async () => {
   const { data, error } = await get({ endpoint: "/api/categories" });
@@ -24,4 +24,9 @@ export const apiUpdateCategoryById = async (args) => {
   const { _id, ...payload } = args;
   const { data, error } = await patch({ endpoint: `/api/categories/${_id}`, body: payload, withAccessToken: true });
   return error ? null : data;
+}
+
+export const apiDeleteCategoryById = async (id) => {
+  const { data } = await del({ endpoint: `/api/categories/${id}`, withAccessToken: true });
+  return data;
 }

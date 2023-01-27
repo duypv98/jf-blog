@@ -58,6 +58,7 @@
     "react/jsx-first-prop-new-line": "off",
     "react/jsx-closing-bracket-location": "off",
     "react/no-array-index-key": "off",
+    "react/jsx-one-expression-per-line": "off",
     "object-curly-newline": "off",
     "quotes": "off",
     "semi": "off"

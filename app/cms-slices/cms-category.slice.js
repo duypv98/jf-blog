@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { apiCreateCategory, apiGetListCategories, apiUpdateCategoryById } from "../apis/category.api";
+import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { apiCreateCategory, apiDeleteCategoryById, apiGetListCategories, apiUpdateCategoryById } from "../apis/category.api";
 
 const initialState = {
   /** @type {Array<import("../apis/category.api").Category>} */
@@ -33,6 +33,16 @@ export const updateCategoryById = createAsyncThunk("cms-categoris/updateById",
     const data = await apiUpdateCategoryById(args);
     return data;
   });
+
+export const deleteCategoryById = createAsyncThunk("cms-categories/deleteById",
+  /**
+   *
+   * @param {string} id
+   */
+  async (id) => {
+    const data = await apiDeleteCategoryById(id);
+    return data;
+  })
 
 const cmsCategorySlice = createSlice({
   name: "cms-categories",
@@ -70,6 +80,12 @@ const cmsCategorySlice = createSlice({
         const index = state.categories.findIndex((c) => c._id === action.payload._id);
         if (index !== -1) state.categories.splice(index, 1, action.payload);
       }
+    });
+
+    builder.addMatcher(isAnyOf(deleteCategoryById.rejected, deleteCategoryById.fulfilled), (state, action) => {
+      const categoryId = action.meta.arg;
+      const index = state.categories.findIndex((c) => c._id === categoryId);
+      if (index !== -1) state.categories.splice(index, 1);
     });
   }
 });

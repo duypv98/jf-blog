@@ -1,5 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import cmsCategorySlice from "./cms-slices/cms-category.slice";
 
 export const store = configureStore({
-  reducer: {}
+  reducer: combineReducers({
+    cmsCategoryState: cmsCategorySlice
+  })
 });

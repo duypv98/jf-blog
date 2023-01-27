@@ -43,4 +43,6 @@ async function dbConnect() {
   return cached.conn;
 }
 
+export const parseDoc = (doc) => JSON.parse(JSON.stringify(doc));
+
 export default dbConnect;

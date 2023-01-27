@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import useCMSAuth from "../../hooks/useCMSAuth"
 import LoginForm from "../LoginForm";
 
@@ -10,7 +10,7 @@ const AuthCMS = ({ children }) => {
   const { auth } = useCMSAuth();
 
   return auth?.loading
-    ? <></>
+    ? <Spinner />
     : auth?.user
       ? <>{children}</>
       : <Container>

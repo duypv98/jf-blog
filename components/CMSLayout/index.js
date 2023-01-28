@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import useCMSAuth from "../../hooks/useCMSAuth";
+import useRevalidate from "../../hooks/useRevalidate";
 import AuthCMS from "./AuthCMS";
 import "./cms-layout.scss";
 
@@ -13,6 +14,7 @@ import "./cms-layout.scss";
 const CMSLayout = (props) => {
   const { auth } = useCMSAuth({ fetchMe: true });
   const router = useRouter();
+  useRevalidate();
 
   const goToLink = (e, link) => {
     e.preventDefault();
@@ -40,6 +42,7 @@ const CMSLayout = (props) => {
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <Nav.Link href="/cms/categories" onClick={(e) => goToLink(e, "/cms/categories")}>Categories</Nav.Link>
               <Nav.Link href="/cms" onClick={(e) => goToLink(e, "/cms")}>Posts</Nav.Link>
+              <Nav.Link href="/cms/revalidate" onClick={(e) => goToLink(e, "/cms/revalidate")}>Revalidate</Nav.Link>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

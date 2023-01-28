@@ -120,14 +120,14 @@ const request = async (args) => {
 }
 
 /**
- * @param {Omit<RequestData, "method" | "body"> & { params?: any }} args;
+ * @param {Omit<RequestData, "method" | "body"> & { params?: any; encodeParams?: boolean; }} args;
  *
  */
 export const get = (args) => {
-  const { endpoint, params, ...rest } = args;
+  const { endpoint, params, encodeParams, ...rest } = args;
   let _endpoint = endpoint;
   if (params && !(params.constructor === Object && !Object.keys(params).length)) {
-    _endpoint += `?${qs.stringify(params, { encode: true })}`;
+    _endpoint += `?${qs.stringify(params, { encode: encodeParams })}`;
   }
   return request({ endpoint: _endpoint, ...rest });
 }

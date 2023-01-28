@@ -12,4 +12,8 @@ body {
   padding: 0;
   scroll-behavior: smooth;
   @include custom-scroll();
+
+  .width-100pc {
+    width: 100%;
+  }
 }

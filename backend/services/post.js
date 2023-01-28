@@ -23,6 +23,7 @@ const postServices = {
    *  asc?: boolean;
    *  category?: string | null;
    *  owner?: string;
+   *  excludePrivate?: boolean;
    * }} args
    * @returns
    */
@@ -32,13 +33,16 @@ const postServices = {
       limit = 10,
       sortBy = "createdAt",
       asc,
-      category
+      category,
+      excludePrivate
     } = args;
 
+    /** @type {*} */
     const filter = { deletedAt: { $exists: false } };
     if (typeof category !== "undefined"
       && (category === null || isValidObjectId(category))
     ) filter.category = category;
+    if (typeof excludePrivate !== "undefined") filter.isPrivate = false;
 
     await dbConnect();
 

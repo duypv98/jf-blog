@@ -1,5 +1,3 @@
-import moment from "moment";
-import { Col, Container, Row } from "react-bootstrap";
 import postServices from "../backend/services/post";
 import HomePageView from "../components/home-view";
 import PageLayout from '../components/PageLayout';

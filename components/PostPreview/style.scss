@@ -25,7 +25,10 @@
     > .post-subtitle {
       font-weight: 300;
       margin-bottom: 0.625rem;
-      height: 70px;
+      height: 64px;
+      @include responsive(lg) {
+        height: 70px;
+      }
       @include ellipsis-text(2);
     }
 

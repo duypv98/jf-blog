@@ -40,3 +40,22 @@ export const apiDeletePostById = async (id) => {
   const { data } = await del({ endpoint: `/api/posts/${id}`, withAccessToken: true });
   return data;
 }
+
+/**
+ *
+ * @param {{
+ *  skip?: number;
+ *  limit?: number;
+ *  sortBy?: "createdAt" | "title",
+ *  asc?: boolean;
+ *  category?: string | null
+ * }} args
+ * @returns {Promise<{
+ *  total: number;
+ *  data: Array<Post>;
+ * }>}
+ */
+export const apiListPosts = async (args) => {
+  const { data, error } = await get({ endpoint: "/api/posts", params: args });
+  return error ? { total: 0, data: [] } : data;
+}

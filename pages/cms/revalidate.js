@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { revalidate } from "../../app/cms-slices/cms-revalidate.slice";
 
 const CMSLayout = dynamic(() => import("../../components/CMSLayout"), { ssr: false });
@@ -9,6 +9,7 @@ const CMSLayout = dynamic(() => import("../../components/CMSLayout"), { ssr: fal
 const CMSRevalidatePage = () => {
   const { handleSubmit, reset, register } = useForm();
   const dispatch = useDispatch();
+  const revalidating = useSelector((state) => state.cmsRevalidateState.revalidating);
 
   const clickRevalidate = (data) => {
     /** @type {string} */
@@ -30,7 +31,7 @@ const CMSRevalidatePage = () => {
               placeholder="/path"
               {...register("path")}
             />
-            <Button type="submit">Revalidate</Button>
+            <Button type="submit" disabled={revalidating}>Revalidate</Button>
           </div>
         </Form.Group>
       </Form>

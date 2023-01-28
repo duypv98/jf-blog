@@ -1,11 +1,23 @@
+import classNames from "classnames";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { memo, useEffect, useRef } from 'react';
 import { Container, Dropdown, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import useTrans from '../../hooks/useTrans';
+import { mapSeriesName } from "../../utils/config";
 import './NavigationBar.scss';
 
-const NavigationBar = () => {
+/**
+ *
+ * @param {import("react").PropsWithoutRef<{
+ *  bgcolor?: string;
+ * }>} props
+ * @returns
+ */
+const NavigationBar = (props) => {
+  const {
+    bgcolor
+  } = props;
   const trans = useTrans();
   const router = useRouter();
 
@@ -39,7 +51,7 @@ const NavigationBar = () => {
   }
 
   return (
-    <Navbar expand="lg" className="mainNav" ref={navRef}>
+    <Navbar expand="lg" className="mainNav" ref={navRef} style={{ backgroundColor: bgcolor }}>
       <Container className="px-4 px-lg-5 position-relative">
         {/* Logo */}
         <Link href="/" as="/">
@@ -70,9 +82,7 @@ const NavigationBar = () => {
           <Nav className="ms-auto py-4 py-lg-0">
             <Link passHref href="/" locale={router.locale}><Nav.Link className="navItem">{trans.nav.home}</Nav.Link></Link>
             <NavDropdown title={trans.nav.series} className="navItem" id="series-nav-dropdown" renderMenuOnMount={false}>
-              <Link passHref href="/fe" locale={router.locale}><NavDropdown.Item>Front-End | React</NavDropdown.Item></Link>
-              <Link passHref href="/be" locale={router.locale}><NavDropdown.Item>Back-End</NavDropdown.Item></Link>
-              <Link passHref href="/devops" locale={router.locale}><NavDropdown.Item>DevOps</NavDropdown.Item></Link>
+              {Object.keys(mapSeriesName).map((slug, i) => <Link key={i} passHref href={`/${slug}`} locale={router.locale}><NavDropdown.Item>{mapSeriesName[slug]}</NavDropdown.Item></Link>)}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

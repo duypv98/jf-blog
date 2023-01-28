@@ -1,7 +1,7 @@
 import { CategoryModel } from "../models/category";
-import dbConnect, { parseDoc } from "../utils/mongodb"
+import dbConnect, { parseDoc } from "../utils/mongodb";
 
-export default {
+const categoryServices = {
   getAll: async () => {
     await dbConnect();
     const categories = await CategoryModel.find();
@@ -36,5 +36,13 @@ export default {
     await dbConnect();
     const deleted = await CategoryModel.findByIdAndDelete(id);
     return deleted;
+  },
+
+  getBySlug: async (slug) => {
+    await dbConnect();
+    const category = await CategoryModel.findOne({ slug });
+    return category ? parseDoc(category) : null;
   }
 }
+
+export default categoryServices;

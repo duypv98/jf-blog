@@ -18,9 +18,9 @@ const Header = (props) => {
   const {
     backgroundSrc = '/images/home-bg.jpg',
     isSiteHeader = false,
-    title = 'Title',
-    subTitle = 'SubTitle',
-    meta = 'Meta'
+    title = '',
+    subTitle = '',
+    meta = ''
   } = props;
   return (
     <header className="masthread" style={{ backgroundImage: `url(${backgroundSrc})` }}>

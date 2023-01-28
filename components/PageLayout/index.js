@@ -1,7 +1,7 @@
+import Footer from '../Footer';
+import Header from '../Header';
 import Layout from '../Layout';
 import NavigationBar from '../NavigationBar';
-import Header from '../Header';
-import Footer from '../Footer';
 
 /**
  *
@@ -12,6 +12,7 @@ import Footer from '../Footer';
  *  headerBackground?: string;
  *  isSiteHeader?: boolean;
  *  pageId?: string;
+ *  disableHeader?: boolean;
  * }>} props
  */
 
@@ -22,19 +23,22 @@ const PageLayout = (props) => {
     headerMeta,
     isSiteHeader,
     headerBackground,
+    disableHeader,
     children
   } = props;
   return (
     <Layout>
-      <NavigationBar />
-      <Header
+      <NavigationBar bgcolor={disableHeader ? "#000000cc" : undefined} />
+      {!disableHeader && <Header
         title={headerTitle}
         subTitle={headerSubTitle}
         meta={headerMeta ?? ''}
         isSiteHeader={isSiteHeader}
         backgroundSrc={headerBackground}
-      />
-      {children}
+      />}
+      <main {...(disableHeader ? { style: { paddingTop: "66.8px" } } : {})}>
+        {children}
+      </main>
       <Footer />
     </Layout>
   )

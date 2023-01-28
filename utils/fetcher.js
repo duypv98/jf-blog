@@ -65,6 +65,9 @@ const request = async (args) => {
   if (!endpoint.startsWith("http")) {
     _endpoint = `${apiHost}${endpoint}`;
   }
+  /**
+   * @type {RequestInit["headers"]}
+   */
   const headers = {
     ...defaultHeaders,
     ...customHeaders

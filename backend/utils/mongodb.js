@@ -45,4 +45,6 @@ async function dbConnect() {
 
 export const parseDoc = (doc) => JSON.parse(JSON.stringify(doc));
 
+export const isValidObjectId = (id) => /^[a-fA-F0-9]{24}$/.test(String(id))
+
 export default dbConnect;

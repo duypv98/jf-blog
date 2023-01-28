@@ -1,13 +1,14 @@
 @import "../../styles/mixins.scss";
 
-#cms-category-view {
-  .category-menu {
+#cms-post-view {
+  .post-menu {
     margin-bottom: 10px;
     display: flex;
     justify-content: flex-end;
   }
 }
 
-.create-or-update-category-modal {
+
+.create-or-update-post-modal {
   @include modalWidth(70%);
 }

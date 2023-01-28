@@ -43,7 +43,7 @@ const CMSCategoryView = () => {
       ? <Spinner />
       : <>
         <div className="category-menu">
-          <OverlayTrigger placement="auto" overlay={<Tooltip>Create new category</Tooltip>}>
+          <OverlayTrigger overlay={<Tooltip>Create new category</Tooltip>}>
             <Button variant="dark" onClick={handleClickCreate}>Create</Button>
           </OverlayTrigger>
         </div>

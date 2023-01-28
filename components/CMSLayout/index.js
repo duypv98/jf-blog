@@ -11,7 +11,7 @@ import "./cms-layout.scss";
  * @returns
  */
 const CMSLayout = (props) => {
-  const { auth } = useCMSAuth();
+  const { auth } = useCMSAuth({ fetchMe: true });
   const router = useRouter();
 
   const goToLink = (e, link) => {

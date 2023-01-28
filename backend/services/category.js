@@ -10,7 +10,7 @@ export default {
 
   /**
    *
-   * @param {{ title: string; slug: strin; tag?: string; }} param0
+   * @param {{ title: string; slug: string; tag?: string; }} param0
    */
   createOne: async ({ title, slug, tag }) => {
     await dbConnect();

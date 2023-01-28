@@ -32,6 +32,7 @@
     "no-multi-assign": "off",
     "no-nested-ternary": "off",
     "no-param-reassign": "off",
+    "no-restricted-globals": "off",
     "no-shadow": "off",
     "no-underscore-dangle": "off",
     "no-unused-vars": "warn",
@@ -59,6 +60,7 @@
     "react/jsx-closing-bracket-location": "off",
     "react/no-array-index-key": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react/no-danger": "off",
     "object-curly-newline": "off",
     "quotes": "off",
     "semi": "off"

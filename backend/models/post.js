@@ -1,18 +1,25 @@
 import mongoose from "mongoose";
 import { categoryTblName } from "./category";
+import { userTblName } from "./user";
 
 const postSchema = new mongoose.Schema({
   title: String,
   slug: String,
   content: String,
-  private: Boolean,
+  isPrivate: Boolean,
   deletedAt: Date,
   category: {
     type: mongoose.Types.ObjectId,
-    ref: categoryTblName
+    ref: categoryTblName,
+    default: null
+  },
+  owner: {
+    type: mongoose.Types.ObjectId,
+    ref: userTblName
   }
 }, {
-  versionKey: false
+  versionKey: false,
+  timestamps: true
 });
 
 export const postTblName = "Post";

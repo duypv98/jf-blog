@@ -15,7 +15,7 @@ import { getSlug } from "../../utils/format";
  * }} props
  */
 const CreateOrUpdateCategoryModal = (props) => {
-  const { show, onHide } = props;
+  const { show, onHide = () => { } } = props;
   const currentCategory = useSelector((state) => state.cmsCategoryState.currentCategory);
   const { register, handleSubmit, setValue, reset } = useForm({ defaultValues: currentCategory });
   const dispatch = useDispatch();
@@ -77,6 +77,8 @@ const CreateOrUpdateCategoryModal = (props) => {
   return <Modal
     show={show}
     onHide={onHide}
+    centered
+    dialogClassName="create-or-update-category-modal"
   >
     <Modal.Header closeButton>
       <Modal.Title>{currentCategory._id ? "Edit" : "Create"}</Modal.Title>

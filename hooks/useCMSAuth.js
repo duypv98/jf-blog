@@ -2,9 +2,16 @@ import { useContext, useEffect } from "react";
 import { apiGetMe } from "../app/apis/auth.api";
 import CMSAuthContext from "../context/CMSAuthContext";
 
-const useCMSAuth = () => {
+/**
+ *
+ * @param {{ fetchMe?: boolean; }} [args]
+ * @returns
+ */
+const useCMSAuth = (args = { fetchMe: false }) => {
   const useAuthContext = useContext(CMSAuthContext);
+  const { fetchMe } = args;
   useEffect(() => {
+    if (!fetchMe) return;
     apiGetMe()
       .then((data) => {
         if (data) {

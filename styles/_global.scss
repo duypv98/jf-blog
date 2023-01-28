@@ -1,5 +1,6 @@
 @import url('https://pro.fontawesome.com/releases/v5.0.10/css/all.css');
 @import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import "./mixins.scss";
 
 * {
   box-sizing: border-box;
@@ -10,4 +11,5 @@ body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  @include custom-scroll();
 }

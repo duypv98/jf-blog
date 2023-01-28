@@ -1,25 +1,40 @@
+import moment from "moment";
+import { Col, Container, Row } from "react-bootstrap";
+import postServices from "../backend/services/post";
+import HomePageView from "../components/home-view";
 import PageLayout from '../components/PageLayout';
 import useTrans from '../hooks/useTrans';
 
-const Index = () => {
+/**
+ *
+ * @param {{
+ *  posts: Array<import("../app/apis/post.api").Post>
+ * }} props
+ * @returns
+ */
+const Index = (props) => {
   const trans = useTrans();
+  const { posts } = props;
+
   return (
     <PageLayout
       headerTitle={trans.index.title}
       headerSubTitle={trans.index.subTitle}
       isSiteHeader
     >
-      <div id="index">
-        Hello
-      </div>
+      <HomePageView latestPosts={posts} />
     </PageLayout>
   );
 }
 
 export const getStaticProps = async () => {
+  const { data: posts } = await postServices.getList({
+    skip: 0, limit: 6,
+    sortBy: "createdAt", asc: false
+  });
   return {
     props: {
-      x: 1
+      posts
     }
   }
 }

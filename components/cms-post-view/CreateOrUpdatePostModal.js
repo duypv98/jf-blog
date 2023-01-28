@@ -121,7 +121,25 @@ const CreateOrUpdatePostModal = (props) => {
             </Form.Group>
           </Col>
 
-          <Col>
+          <Col sm={12}>
+            <Form.Group>
+              <Form.Label>Excerpt</Form.Label>
+              <Controller
+                control={control}
+                name="excerpt"
+                defaultValue={currentPost.excerpt}
+                render={({ field }) => <CKEditor
+                  defaultValue={field.value}
+                  onChange={(value) => {
+                    markChanged("excerpt");
+                    field.onChange(value);
+                  }}
+                />}
+              />
+            </Form.Group>
+          </Col>
+
+          <Col sm={12}>
             <Form.Group>
               <Form.Label>Content</Form.Label>
               <Controller

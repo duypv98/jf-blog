@@ -5,6 +5,7 @@ import { del, get, patch, post } from "../../utils/fetcher"
  *  _id?: string;
  *  title: string;
  *  slug: string;
+ *  excerpt: string;
  *  content: string;
  *  isPrivate: boolean;
  *  category: string;
@@ -26,7 +27,7 @@ export const apiGetPostById = async (id) => {
 }
 
 /**
- * @param {{ _id: string} & Partial<Pick<Post, "title" | "slug" | "content" | "isPrivate" | "category">} args
+ * @param {{ _id: string} & Partial<Pick<Post, "title" | "slug" | "excerpt" | "content" | "isPrivate" | "category">} args
  * @returns {Promise<Post>}
  */
 export const apiUpdatePostById = async (args) => {

@@ -5,6 +5,7 @@ import { userTblName } from "./user";
 const postSchema = new mongoose.Schema({
   title: String,
   slug: String,
+  excerpt: String,
   content: String,
   isPrivate: Boolean,
   deletedAt: Date,

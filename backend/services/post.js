@@ -3,6 +3,7 @@
  *  _id?: any;
  *  title: string;
  *  slug: string;
+ *  excerpt: string;
  *  content: string;
  *  isPrivate: boolean;
  *  category: any;
@@ -76,7 +77,7 @@ const postServices = {
 
   /**
    *
-   * @param {{ _id: string} & Partial<Pick<Post, "title" | "slug" | "content" | "isPrivate" | "category">} args
+   * @param {{ _id: string} & Partial<Pick<Post, "title" | "slug" | "excerpt" | "content" | "isPrivate" | "category">} args
    */
   updateById: async (args) => {
     await dbConnect();
@@ -85,7 +86,7 @@ const postServices = {
     Object.keys(updates || {}).forEach((key) => {
       if (typeof updates[key] !== "undefined" && key !== "deletedAt") update[key] = updates[key];
     });
-    const newPost = await PostModel.findByIdAndUpdate(_id, update, { new: true });
+    const newPost = await PostModel.findByIdAndUpdate(_id, { $set: { ...update } }, { new: true });
     return newPost;
   },
 

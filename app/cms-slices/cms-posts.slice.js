@@ -83,7 +83,7 @@ const cmsPostSlice = createSlice({
     builder.addCase(createPost.fulfilled, (state, action) => {
       if (action.payload) {
         if (state.page === 1) {
-          state.posts = [action.payload, ...state.posts.slice(0, -1)]
+          state.posts = [action.payload, ...state.posts]
         }
       }
     });

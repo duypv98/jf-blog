@@ -1,0 +1,39 @@
+@import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
+@import "../../styles/mixins.scss";
+
+.post-preview {
+  border: 1px solid #ccc;
+  padding: 10px;
+  > a {
+    text-decoration: none;
+    color: $gray-900;
+    &:focus,
+    &:hover {
+      color: $primary;
+    }
+
+    > .post-title {
+      font-size: 1.875rem;
+      margin-top: 1.875rem;
+      margin-bottom: 0.625rem;
+      @include responsive(lg) {
+        font-size: 2.25rem;
+      }
+    }
+
+    > .post-subtitle {
+      font-weight: 300;
+      margin-bottom: 0.625rem;
+      height: 63px;
+      @include ellipsis-text(2);
+    }
+
+    > .post-meta {
+      font-size: 1.125rem;
+      font-style: italic;
+      margin-top: 0;
+      color: $gray-900;
+    }
+  }
+}

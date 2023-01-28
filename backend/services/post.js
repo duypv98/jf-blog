@@ -75,6 +75,13 @@ const postServices = {
     return post ? parseDoc(post) : null;
   },
 
+  getBySlug: async (slug) => {
+    await dbConnect();
+    if (!slug) return null;
+    const post = await PostModel.findOne({ slug, deletedAt: { $exists: false } });
+    return post ? parseDoc(post) : null;
+  },
+
   /**
    *
    * @param {{ _id: string} & Partial<Pick<Post, "title" | "slug" | "excerpt" | "content" | "isPrivate" | "category">} args

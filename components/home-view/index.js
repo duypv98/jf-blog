@@ -1,6 +1,6 @@
-import moment from "moment";
 import { Col, Container, Row } from "react-bootstrap";
 import PostPreview from "../PostPreview";
+import Link from "next/link";
 import "./style.scss";
 
 /**
@@ -16,11 +16,15 @@ const HomePageView = (props) => {
       <div className="page-heading">Latest Posts</div>
       <Row>
         {latestPosts.map((post) => {
-          return <Col xs={12} className="mb-3">
+          return <Col key={post._id} xs={12} md={6} className="mb-3">
             <PostPreview post={post} />
           </Col>
         })}
       </Row>
+
+      <div className="page-link-center d-flex justify-content-center mt-3">
+        <Link href="/all-posts">&gt;&gt;&gt;&nbsp;View all</Link>
+      </div>
     </Container>
   </div>
 }

@@ -29,7 +29,7 @@ const Index = (props) => {
 
 export const getStaticProps = async () => {
   const { data: posts } = await postServices.getList({
-    skip: 0, limit: 6,
+    skip: 0, limit: 4,
     sortBy: "createdAt", asc: false
   });
   return {

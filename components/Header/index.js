@@ -30,10 +30,10 @@ const Header = (props) => {
             <div className={classNames(isSiteHeader ? "siteTitle" : "postTitle")}>
               <h1>{title}</h1>
               {isSiteHeader ? (
-                <span className="siteSubTitle">{subTitle}</span>
+                <span className="siteSubTitle" dangerouslySetInnerHTML={{ __html: subTitle }} />
               ) : (
                 <>
-                  <h2 className="postSubTitle">{subTitle}</h2>
+                  <h2 className="postSubTitle" dangerouslySetInnerHTML={{ __html: subTitle }} />
                   <span className={meta}>{meta}</span>
                 </>
               )}

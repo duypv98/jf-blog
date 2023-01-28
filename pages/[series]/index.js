@@ -1,9 +1,22 @@
-import { useRouter } from "next/router";
+import moment from "moment";
+import postServices from "../../backend/services/post";
+import PageLayout from "../../components/PageLayout";
+import PostContent from "../../components/PostContent";
 
 const SeriesPage = (props) => {
-  const { series } = props;
+  const {
+    isPost,
+    post
+  } = props;
 
-  return (<>SERIES</>)
+  return isPost ? <PageLayout
+    headerTitle={post?.title}
+    headerSubTitle={post?.excerpt}
+    headerMeta={moment(post?.createdAt).format("MMMM DD, YYYY")}
+  >
+    <PostContent content={post?.content} />
+  </PageLayout>
+    : <>SERIES</>
 }
 
 /**
@@ -20,7 +33,7 @@ export const getStaticPaths = async (context) => {
     })
   })
   return {
-    fallback: false,
+    fallback: "blocking",
     paths
   };
 }
@@ -31,10 +44,19 @@ export const getStaticPaths = async (context) => {
  * @returns {import("next").GetStaticPropsResult}
  */
 export const getStaticProps = async (context) => {
+  const series = context.params.series;
+  let isPost = true;
+  let post = null;
+  if (["fe, be, devops"].includes(series)) {
+    isPost = false;
+  } else {
+    post = await postServices.getBySlug(series);
+  }
   return {
     props: {
-    },
-    revalidate: 3600
+      isPost,
+      post
+    }
   }
 }
 

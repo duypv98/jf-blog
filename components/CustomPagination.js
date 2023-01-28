@@ -27,7 +27,10 @@ const CustomPagination = (props) => {
   const [currentPage, setCurrentPage] = useState(initPage);
   const pagesToShow = useMemo(() => {
     const page = currentPage < 1 ? 1 : currentPage;
-    const leftPages = page < 3 ? [] : _.range(page - 2, page);
+    const leftPages = page < 3
+      ? []
+      : (page + 1 >= totalPages ? _.range(totalPages - 4, page) : _.range(page - 2, page));
+    console.log(leftPages);
     const rightPages = page < 3
       ? (totalPages < 6 ? _.range(page, totalPages > 1 ? totalPages : 2) : _.range(page, 6))
       : (totalPages <= page + 1 ? [page] : _.range(page, page + 3));

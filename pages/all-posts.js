@@ -129,7 +129,8 @@ export const getServerSideProps = async ({ query }) => {
     limit: CMS_POST_LIMIT,
     sortBy: "createdAt",
     asc: false,
-    category: categorySlug === "uncategorized" ? null : category?._id
+    category: categorySlug === "uncategorized" ? null : category?._id,
+    excludePrivate: true
   });
 
   const maxPages = Math.ceil(total / CMS_POST_LIMIT) || 1;

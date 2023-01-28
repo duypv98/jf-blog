@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { memo } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { Container, Dropdown, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import useTrans from '../../hooks/useTrans';
 import './NavigationBar.scss';
@@ -8,6 +8,26 @@ import './NavigationBar.scss';
 const NavigationBar = () => {
   const trans = useTrans();
   const router = useRouter();
+
+  /**
+   * @type {import("react").MutableRefObject<HTMLElement>}
+   */
+  const navRef = useRef();
+
+  useEffect(() => {
+    function navScroll(_) {
+      if (window.scrollY > 66.8) {
+        if (navRef.current) {
+          navRef.current.classList.add("nav-sticky");
+        }
+      } else if (navRef.current) {
+        navRef.current.classList.remove("nav-sticky");
+      }
+    }
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", navScroll)
+    }
+  }, []);
 
   /**
    *
@@ -19,7 +39,7 @@ const NavigationBar = () => {
   }
 
   return (
-    <Navbar expand="lg" className="mainNav">
+    <Navbar expand="lg" className="mainNav" ref={navRef}>
       <Container className="px-4 px-lg-5 position-relative">
         {/* Logo */}
         <Link href="/" as="/">

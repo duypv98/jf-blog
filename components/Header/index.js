@@ -26,7 +26,7 @@ const Header = (props) => {
     <header className="masthread" style={{ backgroundImage: `url(${backgroundSrc})` }}>
       <Container className="position-relative px-4 px-lg-5">
         <Row className="gx-4 gx-lg-5 justify-content-center">
-          <Col className="col-md-10 col-lg-8 col-xl-7">
+          <Col className="col-md-12 col-lg-12 col-xl-10">
             <div className={classNames(isSiteHeader ? "siteTitle" : "postTitle")}>
               <h1>{title}</h1>
               {isSiteHeader ? (

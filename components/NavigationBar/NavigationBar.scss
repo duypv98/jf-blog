@@ -8,8 +8,14 @@
   z-index: 1030;
   border-bottom: 1px solid #dee2e6;
   background-color: #fff;
+  &.nav-sticky {
+    position: fixed;
+    @include responsive(lg) {
+      background-color: rgba($color: #000000, $alpha: 0.8);
+    }
+  }
   @include responsive(lg) {
-    transition: background-color 0.2s;
+    transition: background-color 0.2s linear;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     background-color: transparent;

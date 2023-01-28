@@ -27,8 +27,8 @@ const nextConfig = {
     return config;
   },
   i18n: {
-    locales: ["vi", "en"],
-    defaultLocale: "vi",
+    locales: ["en", "vi"],
+    defaultLocale: "en",
     localeDetection: false
   },
   headers: async () => [{

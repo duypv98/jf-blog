@@ -5,7 +5,7 @@ export default {
   },
 
   index: {
-    title: 'DuyPV Site',
-    subTitle: 'Blog, wiki cá nhân của DuyPV'
+    title: 'Chào mừng đến với JF-Blog',
+    subTitle: 'Đây là 1 trang Blog, wiki cá nhân'
   }
 }

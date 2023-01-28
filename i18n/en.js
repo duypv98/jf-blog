@@ -5,7 +5,7 @@ export default {
   },
 
   index: {
-    title: 'DuyPV Site',
-    subTitle: 'DuyPV\'s Personal blog, wiki'
+    title: 'Welcome to JF-Blog Site',
+    subTitle: 'This is a Personal blog, wiki'
   }
 }

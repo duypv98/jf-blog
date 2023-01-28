@@ -33,6 +33,7 @@
     "react-dom": "17.0.2",
     "react-hook-form": "^7.42.1",
     "react-redux": "^8.0.5",
+    "react-sizeme": "^3.0.2",
     "react-toastify": "^9.1.1",
     "sass-loader": "6.0.6",
     "sharp": "^0.31.2",

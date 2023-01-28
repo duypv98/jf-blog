@@ -1,11 +1,13 @@
 import moment from "moment";
-import { useMemo, useState } from "react";
+import { useRouter } from "next/router";
+import { useCallback, useMemo, useState } from "react";
 import { Badge, Button, Container, OverlayTrigger, Spinner, Table, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { deletePostById, fetchCurrentPostById, setCurrentPost, setOpenCreateOrUpdatePostModal } from "../../app/cms-slices/cms-posts.slice";
 import { CMS_POST_LIMIT } from "../../utils/config";
 import ConfirmDialog from "../ConfirmDialog";
+import CustomPagination from "../CustomPagination";
 import DeleteFilled from "../icons/DeleteFilled";
 import EditFilled from "../icons/EditFilled";
 import CreateOrUpdatePostModal from "./CreateOrUpdatePostModal";
@@ -15,6 +17,7 @@ const CMSPostView = () => {
   const { currentPost, openCreateOrUpdatePostModal, posts, loading, total, page, mapPost } = useSelector((state) => state.cmsPostState);
   const categories = useSelector((state) => state.cmsCategoryState.categories);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const openModal = useMemo(() => !!currentPost && openCreateOrUpdatePostModal, [currentPost, openCreateOrUpdatePostModal]);
 
@@ -45,6 +48,23 @@ const CMSPostView = () => {
     setTriggeredDelete(null);
   }
 
+  const renderPagination = useCallback(() => {
+    console.log("render");
+    return <div className="post-pagination">
+      <CustomPagination
+        count={total}
+        page={page}
+        itemsPerPage={CMS_POST_LIMIT}
+        onChangePage={(page) => {
+          router.push({
+            pathname: "/cms",
+            query: { page }
+          })
+        }}
+      />
+    </div>
+  }, [total, page, CMS_POST_LIMIT])
+
   return <Container id="cms-post-view">
     {loading
       ? <Spinner />
@@ -54,6 +74,8 @@ const CMSPostView = () => {
             <Button variant="dark" onClick={handleClickCreate}>Create</Button>
           </OverlayTrigger>
         </div>
+
+        {renderPagination()}
 
         <Table striped bordered hover>
           <thead>
@@ -116,6 +138,8 @@ const CMSPostView = () => {
             })}
           </tbody>
         </Table>
+
+        {renderPagination()}
 
         {openModal && <CreateOrUpdatePostModal
           show

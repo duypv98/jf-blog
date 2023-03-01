@@ -49,7 +49,6 @@ const CMSPostView = () => {
   }
 
   const renderPagination = useCallback(() => {
-    console.log("render");
     return <div className="post-pagination">
       <CustomPagination
         count={total}

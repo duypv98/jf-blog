@@ -1422,9 +1422,9 @@ ckeditor4-integrations-common@^1.0.0:
   integrity sha512-OAoQT/gYrHkg0qgzf6MS/rndYhq3SScLVQ3rtXQeuCE8ju7nFHg3qZ7WGA2XpFxcZzsMP6hhugXqdel5vbcC3g==
 
 ckeditor4-react@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/ckeditor4-react/-/ckeditor4-react-4.1.1.tgz#49482ff82bab732a2c2286f38a1ab38c98e46343"
-  integrity sha512-iIq/14gXD6+l/+S+urt9oErhyh7/NrFiDqpcsxnmTmA5MVlnjTgmBZg0ik5bWjr0a4Q979opwm39lCq8/Go+wA==
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/ckeditor4-react/-/ckeditor4-react-4.1.2.tgz#7f0a8fe184205e87cd8315f92989cec44a9b28e0"
+  integrity sha512-kaKXiJ2KIR8abAWYNy9MXo7iqo2dvMNKGM3wBbqJW69qi2f9EvhpOJSQselvaVmoiXXzJhwrlA8j+2yh9qbNQw==
   dependencies:
     ckeditor4-integrations-common "^1.0.0"
     prop-types "^15.8.1"

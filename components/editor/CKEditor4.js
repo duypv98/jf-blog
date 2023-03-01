@@ -8,6 +8,7 @@ const CKEditor = forwardRef(
    * }} CKEditor4Ref
    * @param {import("react").PropsWithoutRef<{
    *  defaultValue?: string;
+   *  value?: string;
    *  onChange?: (value: string) => void;
    *  onBlur?: (value: string) => void;
    *  inline?: boolean;
@@ -16,12 +17,13 @@ const CKEditor = forwardRef(
    */
   (props, ref) => {
     const {
-      defaultValue = "",
+      defaultValue,
+      value,
       onChange = () => { },
       onBlur = () => { },
       inline
     } = props;
-    const [value, setValue] = useState(defaultValue);
+    // const [value, setValue] = useState(defaultValue);
     /**
      * @type {[HTMLDivElement, import("react").Dispatch<import("react").SetStateAction<HTMLDivElement>]}
      */
@@ -55,18 +57,20 @@ const CKEditor = forwardRef(
       dispatchEvent: ({ type, payload }) => {
         if (type === CKEditorEventAction.change) {
           const content = payload.editor.getData();
-          setValue(content);
-          onChange(content);
+          if (typeof defaultValue === "undefined" && typeof value !== "undefined") onChange(content);
         } else if (type === CKEditorEventAction.blur) {
           const content = payload.editor.getData();
-          setValue(content);
-          onBlur(content);
+          if (typeof defaultValue === "undefined" && typeof value !== "undefined") onBlur(content);
         }
       }
     });
 
     useImperativeHandle(ref, () => ({
-      editor: e
+      editor: {
+        getData: () => {
+          return e?.getData() ?? '';
+        }
+      }
     }));
 
     return <div className="ckeditor-4-react-container"

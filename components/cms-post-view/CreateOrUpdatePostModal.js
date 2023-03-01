@@ -86,6 +86,7 @@ const CreateOrUpdatePostModal = (props) => {
     onHide={onHide}
     centered
     dialogClassName="create-or-update-post-modal"
+    enforceFocus={false}
   >
     <Modal.Header closeButton>
       <Modal.Title>{currentPost._id ? "Edit" : "Create"}</Modal.Title>
@@ -145,7 +146,8 @@ const CreateOrUpdatePostModal = (props) => {
                 name="content"
                 defaultValue={currentPost.content}
                 render={({ field }) => <CKEditor
-                  defaultValue={field.value}
+                  value={field.value}
+                  ref={field.ref}
                   onChange={(value) => {
                     markChanged("content");
                     field.onChange(value);

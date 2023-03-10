@@ -146,7 +146,7 @@ const CreateOrUpdatePostModal = (props) => {
                 name="content"
                 defaultValue={currentPost.content}
                 render={({ field }) => <CKEditor
-                  value={field.value}
+                  value={field.value ?? ""}
                   ref={field.ref}
                   onChange={(value) => {
                     markChanged("content");
